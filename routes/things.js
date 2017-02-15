@@ -1,8 +1,8 @@
-var db = require('../controllers/db');
+var Thing = require('../models/Thing');
 
 exports.getThing = function (req, res) {
     var queryType = req.route.path.replace('/','').split("/")[2];
-    db.getOneAndReturn(req.params.id, queryType, function (err, result) {
+    Thing.getOneAndReturn(req.params.id, queryType, function (err, result) {
         if (err) {
             res.send(500, 'API Error: ' + err.toString());
         }
@@ -19,7 +19,7 @@ exports.postThing = function (req, res) {
         }
         else {
             var queryType = req.route.path.replace('/','').split("/")[2];
-            db.postAndReturn(req.body, queryType, function (err, newEntry) {
+            Thing.postAndReturn(req.body, queryType, function (err, newEntry) {
                 if (err) {
                     res.send(500, 'API Error: ' + err.toString());
                 }
@@ -37,7 +37,7 @@ exports.postThing = function (req, res) {
 exports.listThing = function (req, res) {
     if (req.query.q) {
         var queryType = req.route.path.replace('/','').split("/")[2];
-        db.getSelection(req.query.q, queryType, function (err, result) {
+        Thing.getSelection(req.query.q, queryType, function (err, result) {
             if (err) {
                 res.send(500, 'API Error: ' + err.toString());
             }
@@ -58,7 +58,7 @@ exports.updateThing = function (req, res) {
         }
         else {
             var queryType = req.route.path.replace('/','').split("/")[2];
-            db.updateAndReturn(req.params.id, req.body, queryType, function (err, result) {
+            Thing.updateAndReturn(req.params.id, req.body, queryType, function (err, result) {
                 if (err) {
                     res.send(500, 'API Error: ' + err.toString());
                 }
@@ -75,6 +75,3 @@ exports.updateThing = function (req, res) {
         res.send(400, 'API Error: No request.');
     }
 };
-
-// There's no mapping for HTTP DELETE yet :(
-// Care to add one? Send me a pull request!
