@@ -2,9 +2,15 @@
 
 ## install dependencies
 
+install docker
+
+please refer to https://docs.docker.com/docker-for-mac/
+
+install npm modules
+
 `$ npm install`
 
-Install mongo docker image from dockerhub
+install mongo docker image from dockerhub
 
 `$ docker pull mongo`
 
@@ -18,7 +24,9 @@ run application
 
 `$ node server.js`
 
-## run the application thought docker image
+hit http://localhost:3000/api/v1/things?q=100
+
+## run the application thought docker image (optional)
 
 build image by yourself
 
@@ -27,11 +35,4 @@ build image by yourself
 
 run as a container
 
-`$ docker run -itd -p 3000:3000 --name <your image name> -d node-api-server .`
-
-
-
-
-
-
-
+`$ docker run -itd -p 3000:3000 --name no --link mongo-database:mongo-database <your username>/node-web-app`
