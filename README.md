@@ -5,12 +5,15 @@
 `$ npm install`
 
 Install mongo docker image from dockerhub
+
 `$ docker pull mongo`
 
 ## run the application
+
 run database
 
 `$ docker run -itd -p 27017:27017 --name mongo-database -d mongo`
+
 run application
 
 `$ node server.js`
